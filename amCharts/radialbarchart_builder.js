@@ -31,7 +31,7 @@
 			this.dispatchEvent(new CustomEvent("propertiesChanged", {
 					detail: {
 						properties: {
-							ttile: this.title
+							title: this.title
 						}
 					}
 			}));
