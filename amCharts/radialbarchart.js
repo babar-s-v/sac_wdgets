@@ -95,7 +95,7 @@
 			myChart.style.height = this.shadowRoot.host.clientHeight - 20 + "px";
 			myChart.style.width = this.shadowRoot.host.clientWidth - 20 + "px";
 			
-			if(this._chartTitle.trim() !== "") {
+			if(this._chartTitle && this._chartTitle.trim() !== "") {
 				var chartTitle = this.shadowRoot.getElementById('chartTitle');
 				chartTitle.innerText = this._chartTitle.trim();
 				myChart.style.height = myChart.style.height - chartTitle.clientHeight - 10 + "px";
