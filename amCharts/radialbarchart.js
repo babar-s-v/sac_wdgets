@@ -105,7 +105,7 @@
 				chartTitle.innerText = this._chartTitle.trim();
 				console.log(this._chartTitleFontSize);
 				if(this._chartTitleFontSize && this._chartTitleFontSize > 0) {
-					chartTitle.sytle.fontSize = this._chartTitleFontSize;
+					chartTitle.style.fontSize = this._chartTitleFontSize;
 				}
 				myChart.style.height = myChart.style.height - chartTitle.clientHeight - 10 + "px";
 				myChart.style.top = chartTitle.clientHeight - 10 + "px"; 
