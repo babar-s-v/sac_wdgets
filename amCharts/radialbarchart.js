@@ -13,13 +13,14 @@
 (function() { 
 	
 	let _series1Color;
-	let _series1Stroke;
+	let _chartTitle;
 	const amchartscorejs = "https://cdn.amcharts.com/lib/4/core.js";
 	const amchartschartsjs = "https://cdn.amcharts.com/lib/4/charts.js";
 	const amchartsanimatedjs = "https://cdn.amcharts.com/lib/4/themes/animated.js"
 	
 	let template = document.createElement("template");
 	template.innerHTML = `
+		<div id="chartTitle"></div><br/>
 		<div id="chartdiv"></div>
 	`;
 
@@ -76,8 +77,8 @@
 			if ("color" in changedProperties) {
 				this._series1Color = changedProperties["color"];
 			}
-			if ("opacity" in changedProperties) {
-				this._series1Stroke = changedProperties["opacity"];
+			if ("title" in changedProperties) {
+				this._chartTitle = changedProperties["title"];
 			}
 			if (this._firstConnection === 1) {
 				this.loadthis();
@@ -91,6 +92,8 @@
 		loadthis() {
 			
 			let myChart = this.shadowRoot.getElementById('chartdiv');
+			var chartTitle = this.shadowRoot.getElementById('chartTitle');
+			
 			myChart.style.height = this.shadowRoot.host.clientHeight - 20 + "px";
 			myChart.style.width = this.shadowRoot.host.clientWidth - 20 + "px";
 			
@@ -169,7 +172,6 @@
 
 			var series1 = chart.series.push(new am4charts.RadarColumnSeries());
 			series1.columns.template.fill = am4core.color(this._series1Color);
-			series1.columns.template.stroke = am4core.color(this._series1Color);
 			series1.strokeWidth = this._series1Stroke;
 			series1.columns.template.tooltipText = "{name}: {valueX.value}";
 			series1.name = "Net Promoter Score";

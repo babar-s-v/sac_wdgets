@@ -2,16 +2,13 @@
 	let template = document.createElement("template");
 	template.innerHTML = `
 		<form id="form">
-			<fieldset>
-				<legend>Colored Box Properties</legend>
-				<table>
-					<tr>
-						<td>Opacity</td>
-						<td><input id="builder_opacity" type="text" size="5" maxlength="5"></td>
-					</tr>
-				</table>
-				<input type="submit" style="display:none;">
-			</fieldset>
+			<table>
+				<tr>
+					<td>Chart Title</td>
+					<td><input id="chart_title" type="text"></td>
+				</tr>
+			</table>
+			<input type="submit" style="display:none;">
 		</form>
 		<style>
 		:host {
@@ -34,18 +31,18 @@
 			this.dispatchEvent(new CustomEvent("propertiesChanged", {
 					detail: {
 						properties: {
-							opacity: this.opacity
+							opacity: this.title
 						}
 					}
 			}));
 		}
 
 		set opacity(newOpacity) {
-			this._shadowRoot.getElementById("builder_opacity").value = newOpacity;
+			this._shadowRoot.getElementById("chart_title").value = newOpacity;
 		}
 
 		get opacity() {
-			return this._shadowRoot.getElementById("builder_opacity").value;
+			return this._shadowRoot.getElementById("chart_title").value;
 		}
 	}
 
