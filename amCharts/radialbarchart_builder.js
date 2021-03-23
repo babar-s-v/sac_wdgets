@@ -6,7 +6,10 @@
 				<tr>
 					<td>Chart Title</td>
 					<td><input id="chart_title" type="text"></td>
-					<td><input id="chart_title_fontsize" type="text" size="2" maxlength="2"></td>
+				</tr>
+				<tr>
+					<td>Chart Title Font Size</td>
+					<td><input id="chart_title_fontsize" type="number" size="2" maxlength="2"></td>
 				</tr>
 			</table>
 			<input type="submit" style="display:none;">
