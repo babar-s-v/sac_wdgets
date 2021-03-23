@@ -31,17 +31,17 @@
 			this.dispatchEvent(new CustomEvent("propertiesChanged", {
 					detail: {
 						properties: {
-							opacity: this.title
+							ttile: this.title
 						}
 					}
 			}));
 		}
 
-		set opacity(newOpacity) {
-			this._shadowRoot.getElementById("chart_title").value = newOpacity;
+		set title(newTitle) {
+			this._shadowRoot.getElementById("chart_title").value = newTitle;
 		}
 
-		get opacity() {
+		get title() {
 			return this._shadowRoot.getElementById("chart_title").value;
 		}
 	}
