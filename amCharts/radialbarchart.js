@@ -14,6 +14,7 @@
 	
 	let _series1Color;
 	let _chartTitle;
+	let _chartTitleFontSize;
 	const amchartscorejs = "https://cdn.amcharts.com/lib/4/core.js";
 	const amchartschartsjs = "https://cdn.amcharts.com/lib/4/charts.js";
 	const amchartsanimatedjs = "https://cdn.amcharts.com/lib/4/themes/animated.js"
@@ -80,6 +81,9 @@
 			if ("title" in changedProperties) {
 				this._chartTitle = changedProperties["title"];
 			}
+			if ("titlefontsize" in changedProperties) {
+				this._chartTitleFontSize = changedProperties["titlefontsize"];
+			}
 			if (this._firstConnection === 1) {
 				this.loadthis();
 			}
@@ -95,10 +99,12 @@
 			myChart.style.height = this.shadowRoot.host.clientHeight - 20 + "px";
 			myChart.style.width = this.shadowRoot.host.clientWidth - 20 + "px";
 			
-			console.log(this._chartTitle);
 			if(this._chartTitle && this._chartTitle.trim() !== "") {
 				var chartTitle = this.shadowRoot.getElementById('chartTitle');
 				chartTitle.innerText = this._chartTitle.trim();
+				if(this._chartTitleFontSize && this._chartTitleFontSize.trim() !== "") {
+					chartTitle.sytle.fontSize = this._chartTitleFontSize;
+				}
 				myChart.style.height = myChart.style.height - chartTitle.clientHeight - 10 + "px";
 				myChart.style.top = chartTitle.clientHeight - 10 + "px"; 
 			}

@@ -6,6 +6,7 @@
 				<tr>
 					<td>Chart Title</td>
 					<td><input id="chart_title" type="text"></td>
+					<td><input id="chart_title_fontsize" type="text" size="2" maxlength="2"></td>
 				</tr>
 			</table>
 			<input type="submit" style="display:none;">
@@ -31,7 +32,8 @@
 			this.dispatchEvent(new CustomEvent("propertiesChanged", {
 					detail: {
 						properties: {
-							title: this.title
+							title: this.title,
+							titlefontsize: this.titlefontsize
 						}
 					}
 			}));
@@ -43,6 +45,14 @@
 
 		get title() {
 			return this._shadowRoot.getElementById("chart_title").value;
+		}
+		
+		set titlefontsize(newTitleFontSize) {
+			this._shadowRoot.getElementById("chart_title_fontsize").value = newTitleFontSize;
+		}
+
+		get titlefontsize() {
+			return this._shadowRoot.getElementById("chart_title_fontsize").value;
 		}
 	}
 
