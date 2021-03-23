@@ -21,7 +21,7 @@
 	
 	let template = document.createElement("template");
 	template.innerHTML = `
-		<div id="chartTitle"></div><br/>
+		<div id="chartTitle" style=""></div><br/>
 		<div id="chartdiv"></div>
 	`;
 
@@ -83,6 +83,7 @@
 			}
 			if ("titlefontsize" in changedProperties) {
 				this._chartTitleFontSize = changedProperties["titlefontsize"];
+				console.log(changedProperties["titlefontsize"]);
 			}
 			if (this._firstConnection === 1) {
 				this.loadthis();
@@ -102,7 +103,8 @@
 			if(this._chartTitle && this._chartTitle.trim() !== "") {
 				var chartTitle = this.shadowRoot.getElementById('chartTitle');
 				chartTitle.innerText = this._chartTitle.trim();
-				if(this._chartTitleFontSize && this._chartTitleFontSize.trim() !== "") {
+				console.log(this._chartTitleFontSize);
+				if(this._chartTitleFontSize && this._chartTitleFontSize > 0) {
 					chartTitle.sytle.fontSize = this._chartTitleFontSize;
 				}
 				myChart.style.height = myChart.style.height - chartTitle.clientHeight - 10 + "px";
