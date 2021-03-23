@@ -92,10 +92,15 @@
 		loadthis() {
 			
 			let myChart = this.shadowRoot.getElementById('chartdiv');
-			var chartTitle = this.shadowRoot.getElementById('chartTitle');
-			
 			myChart.style.height = this.shadowRoot.host.clientHeight - 20 + "px";
 			myChart.style.width = this.shadowRoot.host.clientWidth - 20 + "px";
+			
+			if(this._chartTitle.trim() !== "") {
+				var chartTitle = this.shadowRoot.getElementById('chartTitle');
+				chartTitle.innerText = this._chartTitle.trim();
+				myChart.style.height = myChart.style.height - chartTitle.clientHeight - 10 + "px";
+				myChart.style.top = chartTitle.clientHeight - 10 + "px"; 
+			}
 			
 			// Themes begin
 			am4core.useTheme(am4themes_animated);
