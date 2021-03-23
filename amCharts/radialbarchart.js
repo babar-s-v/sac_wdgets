@@ -107,7 +107,7 @@
 				if(this._chartTitleFontSize && this._chartTitleFontSize > 0) {
 					chartTitle.style.fontSize = this._chartTitleFontSize + "px";
 				}
-				myChart.style.height = myChart.style.height - chartTitle.clientHeight - 10 + "px";
+				myChart.style.height = myChart.style.clientHeight - chartTitle.clientHeight - 10 + "px";
 				myChart.style.top = chartTitle.clientHeight - 10 + "px"; 
 			}
 			
