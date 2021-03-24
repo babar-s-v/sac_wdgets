@@ -183,8 +183,6 @@
 			valueAxis.interactionsEnabled = false;
 
 			var series1 = chart.series.push(new am4charts.RadarColumnSeries());
-			series1.columns.template.fill = am4core.color(this._series1Color);
-			series1.strokeWidth = this._series1Stroke;
 			series1.columns.template.tooltipText = "{name}: {valueX.value}";
 			series1.name = "Net Promoter Score";
 			series1.dataFields.categoryY = "category";
@@ -204,8 +202,18 @@
 			series3.dataFields.categoryY = "category";
 			series3.dataFields.valueX = "value3";
 			series3.stacked = true;
-
+			
 			chart.seriesContainer.zIndex = -1;
+			
+			var seriesColors = this._series1Color.split(";");
+			for(var sc = 0; sc < seriesColors.length; sc++) {
+				if(sc == 0) series1.columns.template.fill = am4core.color(seriesColors[0]);
+				if(sc == 1) series1.columns.template.fill = am4core.color(seriesColors[1]);
+				if(sc == 2) series1.columns.template.fill = am4core.color(seriesColors[2]);
+			}
+			
+			chart.endAngle = 180;
+			chart.innerRadius = am4core.percent(20);
 
 			chart.cursor = new am4charts.RadarCursor();
 			chart.cursor.lineY.disabled = true;
