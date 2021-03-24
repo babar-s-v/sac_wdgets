@@ -208,8 +208,8 @@
 			var seriesColors = this._series1Color.split(";");
 			for(var sc = 0; sc < seriesColors.length; sc++) {
 				if(sc == 0) series1.columns.template.fill = am4core.color(seriesColors[0]);
-				if(sc == 1) series1.columns.template.fill = am4core.color(seriesColors[1]);
-				if(sc == 2) series1.columns.template.fill = am4core.color(seriesColors[2]);
+				if(sc == 1) series2.columns.template.fill = am4core.color(seriesColors[1]);
+				if(sc == 2) series3.columns.template.fill = am4core.color(seriesColors[2]);
 			}
 			
 			chart.endAngle = 180;
