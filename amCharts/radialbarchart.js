@@ -83,7 +83,6 @@
 			}
 			if ("titlefontsize" in changedProperties) {
 				this._chartTitleFontSize = changedProperties["titlefontsize"];
-				console.log(changedProperties["titlefontsize"]);
 			}
 			if (this._firstConnection === 1) {
 				this.loadthis();
@@ -103,7 +102,6 @@
 			if(this._chartTitle && this._chartTitle.trim() !== "") {
 				var chartTitle = this.shadowRoot.getElementById('chartTitle');
 				chartTitle.innerText = this._chartTitle.trim();
-				console.log(this._chartTitleFontSize);
 				if(this._chartTitleFontSize && this._chartTitleFontSize > 0) {
 					chartTitle.style.fontSize = this._chartTitleFontSize + "px";
 				}
