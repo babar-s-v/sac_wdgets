@@ -54,16 +54,16 @@
 		
 		connectedCallback() {
 			if (this._firstConnection === 0) {
-				this._firstConnection = 1;
-				async function LoadLibs(callme) {
+				async function LoadLibs(that) {
 					try {
 						await loadScript(amchartscorejs);
 						await loadScript(amchartschartsjs);
 						await loadScript(amchartsanimatedjs);
 					} catch (e) {
-						alert(e);
+						console.log(e);
 					} finally {
-						callme.loadthis();
+						that._firstConnection = 1;
+						that.loadthis();
 					}
 				}
 				LoadLibs(this);
@@ -90,7 +90,9 @@
 		}
 		
 		onCustomWidgetResize(width, height){
-			this.loadthis();
+			if (this._firstConnection === 1) {
+				this.loadthis();
+			}
         }
 		
 		loadthis() {
@@ -117,44 +119,77 @@
 			var chart = am4core.create(myChart, am4charts.RadarChart);
 			chart.hiddenState.properties.opacity = 0; // this creates initial fade-in
 
-			chart.data = [
-			  {
-				category: "One",
-				value1: 8,
-				value2: 2,
-				value3: 4
-			  },
-			  {
-				category: "Two",
-				value1: 11,
-				value2: 4,
-				value3: 2
-			  },
-			  {
-				category: "Three",
-				value1: 7,
-				value2: 6,
-				value3: 6
-			  },
-			  {
-				category: "Four",
-				value1: 13,
-				value2: 8,
-				value3: 3
-			  },
-			  {
-				category: "Five",
-				value1: 12,
-				value2: 10,
-				value3: 5
-			  },
-			  {
-				category: "Six",
-				value1: 15,
-				value2: 12,
-				value3: 4
-			  }
-			];
+			if(this.datasourceString.trim() === "{}") {
+				chart.data = [
+				  {
+					category: "One",
+					measuredescriptions: ["Net Promoter Score", "Detractors", "Promoter"],
+					value1: 8,
+					value2: 2,
+					value3: 4
+				  },
+				  {
+					category: "Two",
+					measuredescriptions: ["Net Promoter Score", "Detractors", "Promoter"],
+					value1: 11,
+					value2: 4,
+					value3: 2
+				  },
+				  {
+					category: "Three",
+					measuredescriptions: ["Net Promoter Score", "Detractors", "Promoter"],
+					value1: 7,
+					value2: 6,
+					value3: 6
+				  },
+				  {
+					category: "Four",
+					measuredescriptions: ["Net Promoter Score", "Detractors", "Promoter"],
+					value1: 13,
+					value2: 8,
+					value3: 3
+				  },
+				  {
+					category: "Five",
+					measuredescriptions: ["Net Promoter Score", "Detractors", "Promoter"],
+					value1: 12,
+					value2: 10,
+					value3: 5
+				  },
+				  {
+					category: "Six",
+					measuredescriptions: ["Net Promoter Score", "Detractors", "Promoter"],
+					value1: 15,
+					value2: 12,
+					value3: 4
+				  }
+				];
+			} else {
+				var newDataSourceObj = JSON.parse(this.datasourceString);
+				var newChartData = [];
+				for(var i = 0; i < newDataSourceObj.length; i++) {
+					var dimMemberID = newDataSourceObj[i].dimensions[0].member_id;
+					var dimMemberDesc = newDataSourceObj[i].dimensions[0].member_description;
+					var msrObj = newDataSourceObj[i].measure;
+					if(!newChartData.find(x => x.category_id === dimMemberID)) {
+						var newDataObject = {};
+						newDataObject.category_id = dimMemberID;
+						newDataObject.category = dimMemberDesc;
+						newDataObject.measuredescriptions = [];
+						newDataObject.measuredescriptions.push(msrObj.measure_description);
+						newDataObject.value1 = msrObj.formattedValue;
+						newChartData.push(newDataObject);
+					} else {
+						var existingObj = newChartData.find(x => x.category_id === dimMemberID);
+						existingObj.measuredescriptions.push(msrObj.measure_description);
+						var newProp = "value"+existingObj.measuredescriptions.length;
+						existingObj[newProp] = msrObj.formattedValue;
+					}
+				}
+				chart.data = newChartData;
+			}
+			
+			
 
 			//chart.padding(20, 20, 20, 20);
 			chart.colors.step = 4;
@@ -173,44 +208,39 @@
 			var valueAxis = chart.xAxes.push(new am4charts.ValueAxis());
 			valueAxis.tooltip.disabled = true;
 			valueAxis.renderer.labels.template.horizontalCenter = "left";
-			valueAxis.min = 0;
-			valueAxis.max = 35;
+			valueAxis.min = 0.0;
+			var measuresSum = [];
+			for(var e = 0; e < chart.data.length; e++) {
+				var msrSum = 0;
+				for(var m = 0; m < chart.data[0].measuredescriptions.length; m++) {
+					var valNum = "value" + (m+1);
+					msrSum = msrSum + parseFloat(chart.data[e][valNum])
+				}
+				measuresSum.push(msrSum);
+			}
+			valueAxis.max = Math.floor(Math.max(...measuresSum)) * 1.02;
 			valueAxis.strictMinMax = false;
 			valueAxis.renderer.maxLabelPosition = 1;
-			valueAxis.renderer.minGridDistance = 10;
+			valueAxis.renderer.minGridDistance = Math.floor(valueAxis.max * 0.1);
 			valueAxis.renderer.grid.template.strokeOpacity = 0.07;
 			valueAxis.renderer.axisFills.template.disabled = true;
 			valueAxis.interactionsEnabled = false;
 
-			var series1 = chart.series.push(new am4charts.RadarColumnSeries());
-			series1.columns.template.tooltipText = "{name}: {valueX.value}";
-			series1.name = "Net Promoter Score";
-			series1.dataFields.categoryY = "category";
-			series1.dataFields.valueX = "value1";
-			series1.stacked = true;
-
-			var series2 = chart.series.push(new am4charts.RadarColumnSeries());
-			series2.columns.template.tooltipText = "{name}: {valueX.value}";
-			series2.name = "Detractors";
-			series2.dataFields.categoryY = "category";
-			series2.dataFields.valueX = "value2";
-			series2.stacked = true;
-
-			var series3 = chart.series.push(new am4charts.RadarColumnSeries());
-			series3.columns.template.tooltipText = "{name}: {valueX.value}";
-			series3.name = "Promoter";
-			series3.dataFields.categoryY = "category";
-			series3.dataFields.valueX = "value3";
-			series3.stacked = true;
+			for(var k = 0; k < chart.data[0].measuredescriptions.length; k++) {
+				var series1 = chart.series.push(new am4charts.RadarColumnSeries());
+				series1.columns.template.tooltipText = "{name}: {valueX.value}";
+				series1.name = chart.data[0].measuredescriptions[k];
+				series1.dataFields.categoryY = "category";
+				series1.dataFields.valueX = "value"+(k+1);
+				series1.stacked = true;
+			}
 			
 			chart.seriesContainer.zIndex = -1;
 			
-			var seriesColors = this._series1Color.split(";");
+			/*var seriesColors = this._series1Color.split(";");
 			for(var sc = 0; sc < seriesColors.length; sc++) {
-				if(sc == 0) series1.columns.template.fill = am4core.color(seriesColors[0]);
-				if(sc == 1) series2.columns.template.fill = am4core.color(seriesColors[1]);
-				if(sc == 2) series3.columns.template.fill = am4core.color(seriesColors[2]);
-			}
+				chart.series[sc].columns.template.fill = am4core.color(seriesColors[sc]);
+			}*/
 			
 			chart.endAngle = 180;
 			chart.innerRadius = am4core.percent(20);
