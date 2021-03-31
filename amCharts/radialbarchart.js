@@ -244,8 +244,6 @@
 				chart.series[sc].columns.template.fill = am4core.color(seriesColors[sc]);
 			}*/
 			
-			chart.series1.columns.template.fill = am4core.color(seriesColors[0]);
-			
 			chart.endAngle = 180;
 			chart.innerRadius = am4core.percent(20);
 
