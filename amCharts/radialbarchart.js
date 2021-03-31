@@ -226,6 +226,7 @@
 			valueAxis.renderer.axisFills.template.disabled = true;
 			valueAxis.interactionsEnabled = false;
 
+			var seriesColors = this._series1Color.split(";");
 			for(var k = 0; k < chart.data[0].measuredescriptions.length; k++) {
 				var series1 = chart.series.push(new am4charts.RadarColumnSeries());
 				series1.columns.template.tooltipText = "{name}: {valueX.value}";
@@ -233,14 +234,17 @@
 				series1.dataFields.categoryY = "category";
 				series1.dataFields.valueX = "value"+(k+1);
 				series1.stacked = true;
+				series1.columns.template.fill = am4core.color(seriesColors[k]);
 			}
 			
 			chart.seriesContainer.zIndex = -1;
 			
-			/*var seriesColors = this._series1Color.split(";");
-			for(var sc = 0; sc < seriesColors.length; sc++) {
+			
+			/*for(var sc = 0; sc < seriesColors.length; sc++) {
 				chart.series[sc].columns.template.fill = am4core.color(seriesColors[sc]);
 			}*/
+			
+			chart.series1.columns.template.fill = am4core.color(seriesColors[0]);
 			
 			chart.endAngle = 180;
 			chart.innerRadius = am4core.percent(20);
