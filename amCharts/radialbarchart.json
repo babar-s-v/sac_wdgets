@@ -1,0 +1,133 @@
+{
+	"id": "com.bva4kor.sac.radialbarchart",
+	"version": "1.0.0",
+	"name": "Radial Bar Chart",
+	"description": "Radial Bar Chart",
+	"newInstancePrefix": "RadialBarChart",
+	"icon": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAOCAYAAAAmL5yKAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsQAAA7EAZUrDhsAAAHKSURBVDhPfZK7bxNBEIe/XZ98dhxd0hiEeUoQSJMCCkQk6KCjpaOkgi5SevpI/AE0lHQ8RJECQUERCSElBYkjxCOmCFKkxORh4+NuvcfsPbCMjL/T6mb2Zn6zM3sqERhLX1YpM0cwXiAOebS6l5rXTwdcbdTE0qlfMOz9S2LZ+WWIbcLT5i6Lb78Txu5EA/4r4A52uH+AV1L0jCXwNRNeiYU3LfcxjxojoJQimJ7CSnUjCRO/FUkZ6jWPpffbMpoojRvbgu1bfDlBxy9Rl8KNZkLkQasbkWhRE1KBfn+4rwJdneThjTPcXf5EUvU49cOjcqQ4u6VY/9nNYlyvxpjUcXaxrLXp23Hpfpu5zW/M6+dcXi6jpZ7Jz65dr77v/w0ucPvFng5mOTn/gtbBDGbScmIz4bx2CslgBi7BLbGyDSHzoVaZI5q5wJa6IrdiZLgeQVB1EQOBXpjwdf2BJOXV5XHviG12X7+k97iO8g2HOzE3Fxp5Vj5ER7WiODe7xOeP9+h82ZDeNJ1whfaTZ8QfmsSeortnuLV4jGqQJwkjf+X2q3ccrWwQ6ZC1/dv4jWmOXyxz7c5UHjFgpEBoDRUtF55jpRFNdu/DwB85aLgBRSBZxgAAAABJRU5ErkJggg==",
+	"vendor": "RBEI",
+	"eula": "",
+	"license": "",
+	"webcomponents": [
+		{
+			"kind": "main",
+			"tag": "com-bva4kor-sac-radialbarchart",
+			"url": "https://babar-s-v.github.io/sac_wdgets/amCharts/radialbarchart.js",
+			"integrity": "",
+			"ignoreIntegrity": true
+		},
+		{
+			"kind": "styling",
+			"tag": "com-bva4kor-sac-radialbarchart-styling",
+			"url": "https://babar-s-v.github.io/sac_wdgets/amCharts/radialbarchart_styling.js",
+			"integrity": "",
+			"ignoreIntegrity": true
+		},
+		{
+			"kind": "builder",
+			"tag": "com-bva4kor-sac-radialbarchart-builder",
+			"url": "https://babar-s-v.github.io/sac_wdgets/amCharts/radialbarchart_builder.js",
+			"integrity": "",
+			"ignoreIntegrity": true
+		}
+	],
+	"properties": {
+		"datasourceString": {
+			"type": "string",
+			"description": "DataSource ResultSet String",
+			"default": "{}"
+		},
+		"color": {
+			"type": "string",
+			"description": "Background color",
+			"default": "#67b7dc;#a367dc;#dc6788"
+		},
+		"title": {
+			"type": "string",
+			"description": "Title of the Chart",
+			"default": ""
+		},
+		"titlefontsize": {
+			"type": "integer",
+			"description": "Font size of the chart title in pixels",
+			"default": 24
+		},
+		"width": {
+			"type": "integer",
+			"default": 400
+		},
+		"height": {
+			"type": "integer",
+			"default": 400
+		}
+	},
+	"methods": {
+		"setDataSourceString": {
+			"description": "Sets the datasource for the chart",
+			"parameters": [
+				{
+					"name": "resultsetString",
+					"type": "string",
+					"description": "DataSource string for the widget"
+				}
+			],
+			"body": "this.datasourceString = resultsetString;"
+		},
+		"getDataSourceString": {
+			"returnType": "string",
+			"description": "Gets the datasource for the chart",
+			"body": "return this.datasourceString;"
+		},
+		"setColor": {
+			"description": "Sets the background color.",
+			"parameters": [
+				{
+					"name": "newColor",
+					"type": "string",
+					"description": "The new background color"
+				}
+			],
+			"body": "this.color = newColor;"
+		},
+		"getColor": {
+			"returnType": "string",
+			"description": "Returns the background color.",
+			"body": "return this.color;"
+		},
+		"setTitle": {
+			"description": "Sets the tile of the chart.",
+			"parameters": [
+				{
+					"name": "newTitle",
+					"type": "string",
+					"description": "The new title of the chart."
+				}
+			],
+			"body": "this.title = newTitle;"
+		},
+		"getTitle": {
+			"returnType": "string",
+			"description": "Returns the chart title",
+			"body": "return this.title;"
+		},
+		"setTitleFontSize": {
+			"description": "Sets the font size for the chart title.",
+			"parameters": [
+				{
+					"name": "newFontSize",
+					"type": "integer",
+					"description": "The new title of the chart."
+				}
+			],
+			"body": "this.titlefontsize = newFontSize;"
+		},
+		"getTitleFontSize": {
+			"returnType": "integer",
+			"description": "Returns the font size for the chart title.",
+			"body": "return this.titlefontsize;"
+		}
+	},
+	"events": {
+		
+	}
+}
