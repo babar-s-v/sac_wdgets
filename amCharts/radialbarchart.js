@@ -239,11 +239,6 @@
 			
 			chart.seriesContainer.zIndex = -1;
 			
-			
-			/*for(var sc = 0; sc < seriesColors.length; sc++) {
-				chart.series[sc].columns.template.fill = am4core.color(seriesColors[sc]);
-			}*/
-			
 			chart.endAngle = 180;
 			chart.innerRadius = am4core.percent(20);
 
