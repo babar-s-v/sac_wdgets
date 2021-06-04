@@ -195,7 +195,7 @@
 					}
 				});
 				if(this._yearFilter !==0) {
-					newData = newData.filter(o => o.year.indexOf(this._yearFilter));
+					newData = newData.filter(o => o.year.indexOf(this._yearFilter) > -1);
 				}
 				chart.data = newData;
 			}
