@@ -15,6 +15,7 @@
 	let _series1Color;
 	let _chartTitle;
 	let _chartTitleFontSize;
+	let _yearFilter;
 	const amchartscorejs = "https://cdn.amcharts.com/lib/4/core.js";
 	const amchartschartsjs = "https://cdn.amcharts.com/lib/4/charts.js";
 	const amchartstimelinejs = "https://cdn.amcharts.com/lib/4/plugins/timeline.js";
@@ -86,6 +87,9 @@
 			if ("titlefontsize" in changedProperties) {
 				this._chartTitleFontSize = changedProperties["titlefontsize"];
 			}
+			if ("yearfilter" in changedProperties) {
+				this._yearFilter = changedProperties["yearfilter"];
+			}
 			if (this._firstConnection === 1) {
 				this.loadthis();
 			}
@@ -124,7 +128,7 @@
 			
 			var colorSet = new am4core.ColorSet();
 
-			if(this.datasourceString.trim() === "{}") {
+			if(this.datasourceStringforyear.trim() === "{}") {
 				chart.data = [{
 					"category": "",
 					"year": "1990",
@@ -173,23 +177,23 @@
 				  }
 				];
 			} else {
-				var dynamicData = JSON.parse(this.datasourceString);
+				var dynamicData;
+				if(this._yearFilter === 0) {
+					dynamicData = JSON.parse(this.datasourceStringforyear);
+				} else {
+					dynamicData = JSON.parse(this.datasourceStringformonth);
+				}
 				var newData = []
 				dynamicData.forEach(function(co, ci) {
 					var newData_ins_Obj = {"category": ""};
-					newData_ins_Obj.year = co.dimensions[0].member_description;
+					newData_ins_Obj.year = co.dimensions[0].member_description.replace("(", "").replace(")", "");
 					newData_ins_Obj.size = co.measure.formattedValue;
-					newData_ins_Obj.text = "Data for the year " + newData_ins_Obj.year
 					newData.push(newData_ins_Obj);
 				});
 				chart.data = newData;
 			}
 			
 			
-			
-
-			chart.dateFormatter.inputDateFormat = "yyyy";
-
 			chart.fontSize = 11;
 			chart.tooltipContainer.fontSize = 11;
 
@@ -249,7 +253,7 @@
 				return chart.colors.getIndex(target.dataItem.index)
 			  }
 			});
-			circle.tooltipText = "{text}: {value}";
+			circle.tooltipText = "{value}";
 			circle.adapter.add("tooltipY", function(tooltipY, target){
 			  return -target.pixelRadius - 4;
 			});
