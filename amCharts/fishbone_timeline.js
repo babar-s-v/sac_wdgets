@@ -187,6 +187,11 @@
 				dynamicData.forEach(function(co, ci) {
 					var _member_desc = co.dimensions[0].member_description;
 					if(_member_desc.indexOf("(all)") === -1) {
+						if(this._yearFilter !==0) {
+							if(_member_desc.indexOf(this._yearFilter) === -1) {
+								continue;
+							}
+						}
 						_member_desc = _member_desc.replace("(", "").replace(")", "");
 						var newData_ins_Obj = {"category": ""};
 						newData_ins_Obj.year = co.dimensions[0].member_description.replace("(", "").replace(")", "");
