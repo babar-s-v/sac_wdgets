@@ -187,11 +187,6 @@
 				dynamicData.forEach(function(co, ci) {
 					var _member_desc = co.dimensions[0].member_description;
 					if(_member_desc.indexOf("(all)") === -1) {
-						if(this._yearFilter !==0) {
-							if(_member_desc.indexOf(this._yearFilter) === -1) {
-								return;
-							}
-						}
 						_member_desc = _member_desc.replace("(", "").replace(")", "");
 						var newData_ins_Obj = {"category": ""};
 						newData_ins_Obj.year = co.dimensions[0].member_description.replace("(", "").replace(")", "");
@@ -199,6 +194,9 @@
 						newData.push(newData_ins_Obj);
 					}
 				});
+				if(this._yearFilter !==0) {
+					newData = newData.filter(o => o.year.indexOf(this._yearFilter));
+				}
 				chart.data = newData;
 			}
 			
