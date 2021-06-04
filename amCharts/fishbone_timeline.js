@@ -112,7 +112,7 @@
 				chartTitle.innerText = this._chartTitle.trim();
 				if(this._chartTitleFontSize && this._chartTitleFontSize > 0) {
 					chartTitle.style.fontSize = this._chartTitleFontSize + "px";
-				}
+				} 
 				myChart.style.height = myChart.clientHeight - chartTitle.clientHeight - 10 + "px";
 				myChart.style.top = chartTitle.clientHeight - 10 + "px"; 
 			}
