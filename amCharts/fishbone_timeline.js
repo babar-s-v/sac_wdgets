@@ -189,7 +189,7 @@
 					if(_member_desc.indexOf("(all)") === -1) {
 						if(this._yearFilter !==0) {
 							if(_member_desc.indexOf(this._yearFilter) === -1) {
-								continue;
+								return;
 							}
 						}
 						_member_desc = _member_desc.replace("(", "").replace(")", "");
