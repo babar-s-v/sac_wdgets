@@ -185,8 +185,9 @@
 				}
 				var newData = []
 				dynamicData.forEach(function(co, ci) {
-					var _member_desc = co.dimensions[0].member_description.replace("(", "").replace(")", "");
+					var _member_desc = co.dimensions[0].member_description;
 					if(_member_desc.indexOf("(all)") === -1) {
+						_member_desc = _member_desc.replace("(", "").replace(")", "");
 						var newData_ins_Obj = {"category": ""};
 						newData_ins_Obj.year = co.dimensions[0].member_description.replace("(", "").replace(")", "");
 						newData_ins_Obj.size = co.measure.formattedValue;
