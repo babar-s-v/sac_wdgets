@@ -260,8 +260,8 @@
 			let valueLabel2 = series2.bullets.push(new am4charts.LabelBullet());
 			valueLabel2.label.text = "{valueX.value}";
 			valueLabel2.label.fontSize = 20;
-			valueLabel2.label.horizontalCenter = "right";
-			valueLabel2.label.dx = -10;
+			valueLabel2.label.horizontalCenter = "left";
+			valueLabel2.label.dx = 10;
 			
 			var minPosition1;
 			var maxPosition1;
