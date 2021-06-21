@@ -253,13 +253,13 @@
 
 			let valueLabel1 = series1.bullets.push(new am4charts.LabelBullet());
 			valueLabel1.label.text = "{valueX.value}";
-			valueLabel1.label.fontSize = 20;
+			valueLabel1.label.fontSize = 16;
 			valueLabel1.label.horizontalCenter = "right";
 			valueLabel1.label.dx = -10;
 			
 			let valueLabel2 = series2.bullets.push(new am4charts.LabelBullet());
 			valueLabel2.label.text = "{valueX.value}";
-			valueLabel2.label.fontSize = 20;
+			valueLabel2.label.fontSize = 16;
 			valueLabel2.label.horizontalCenter = "left";
 			valueLabel2.label.dx = 10;
 			
