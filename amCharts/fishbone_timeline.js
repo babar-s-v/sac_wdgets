@@ -128,7 +128,7 @@
 			
 			var colorSet = new am4core.ColorSet();
 
-			if(this.datasourceStringforyear.trim() === "{}") {
+			if(this.datasourceStringforyear && this.datasourceStringforyear.trim() === "{}") {
 				chart.data = [{
 					"category": "",
 					"year": "1990",
