@@ -22,6 +22,11 @@
 	
 	let template = document.createElement("template");
 	template.innerHTML = `
+		<style>
+			:host #chart1_div svg g g:nth-child(2) g:nth-child(2) g g[aria-labelledby] {
+				visibility: hidden;
+			}
+		</style>
 		<div id="chartTitle" style=""></div><br/>
 		<div id="chartdiv" style="width: 100%; height: 100%">
 			<div id="chart1_div" style="position: relative; width: 50%;height: 50%"></div>
