@@ -133,47 +133,47 @@
 					"category": "",
 					"year": "1990",
 					"size": 13,
-					"text": "Lorem ipsum dolor"
+					"text": 13
 				  }, {
 					"category": "",
 					"year": "1995",
 					"size": 5,
-					"text": "Sit amet"
+					"text": 5
 				  }, {
 					"category": "",
 					"year": "2000",
 					"size": 9,
-					"text": "Consectetur adipiscing elit"
+					"text": 9
 				  }, {
 					"category": "",
 					"year": "2005",
 					"size": 12,
-					"text": "Sed do eiusmod"
+					"text": 12
 				  }, {
 					"category": "",
 					"year": "2010",
 					"size": 3,
-					"text": "Tempor incididunt"
+					"text": 3
 				  }, {
 					"category": "",
 					"year": "2015",
 					"size": 9,
-					"text": "Ut labore et dolore"
+					"text": 9
 				  }, {
 					"category": "",
 					"year": "2020",
 					"size": 4,
-					"text": "Magna aliqua"
+					"text": 4
 				  }, {
 					"category": "",
 					"year": "2025",
 					"size": 3,
-					"text": "Ut enim ad minim veniam"
+					"text": 3
 				  }, {
 					"category": "",
 					"size": 10,
 					"year": "2030",
-					"text": "Quis nostrud exercitation"
+					"text": 10
 				  }
 				];
 			} else {
