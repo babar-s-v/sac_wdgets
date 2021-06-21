@@ -191,6 +191,7 @@
 						var newData_ins_Obj = {"category": ""};
 						newData_ins_Obj.year = co.dimensions[0].member_description.replace("(", "").replace(")", "");
 						newData_ins_Obj.size = co.measure.formattedValue;
+						newData_ins_Obj.text = co.measure.formattedValue;
 						newData.push(newData_ins_Obj);
 					}
 				});
